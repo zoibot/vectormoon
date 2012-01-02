@@ -1,0 +1,7 @@
+{
+    "name": "Test",
+    "objects": [
+                ["player"],
+                ["background", [100,100], "field", "gfx/field.json"]
+               ]
+}
