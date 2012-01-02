@@ -14,13 +14,15 @@ task('minify', [], function(params) {
       all += fs.readFileSync(file).toString();
   });
 
-  var ast = uglify.parser.parse(all);
   var out = fs.openSync('pub/all.js', 'w+');
   if(!params) {
+    var ast = uglify.parser.parse(all);
     ast = uglify.uglify.ast_mangle(ast);
     ast = uglify.uglify.ast_squeeze(ast);
+    fs.writeSync(out, uglify.uglify.gen_code(ast));
+  } else {
+    fs.writeSync(out, all);
   }
-  fs.writeSync(out, uglify.uglify.gen_code(ast));
 });
 
 task('default', [], function(params) {
