@@ -1,19 +1,14 @@
 world = (function () {
     w = {};
-    var objects = [];
+    var local_objects = [];
     var last_update = 0;
     w.load_stage = function (name) {
         $.getJSON(name+".json",
             function (data) {
-                data.objects = $.map(data.objects, function (obj) {
-                        objects[obj[0]].apply();
-                    });
+                local_objects = $.map(data.objects, objects.construct_object);
                 this.stage = data;
                 console.log('loaded stage '+name);
                 console.log(this.stage);
-            })
-            .error(function (xhr,error,message) { 
-                console.log('ERROR LOADING STAGE');
             });
     };
     w.update = function (timing) {
