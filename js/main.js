@@ -17,7 +17,7 @@ game = function() {
         graphics.draw(world.objects);
         graphics.update();
         // run as fast as possible, but don't overflow the stack
-        setTimeout(function () { g.gameloop(); }, 0);
+        //setTimeout(function () { g.gameloop(); }, 0);
     }
     return g;
 }();

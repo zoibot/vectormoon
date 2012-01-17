@@ -16,6 +16,7 @@ graphics = function() {
         gl.enable(gl.BLEND);
         gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
         this.shaders.load_shader('polygon');
+        this.shaders.load_shader('fixed');
         this.shaders.set_matrix_uniforms();
         var fbo = gl.createFramebuffer();
         console.log('graphics initialized '+gl);
