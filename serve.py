@@ -21,6 +21,7 @@ print('serving at port 8000')
 
 last_changed = 0
 def has_changed():
+    global last_changed
     old_time = last_changed
     last_changed = os.path.getmtime('.')
     return old_time < last_changed
