@@ -6,9 +6,10 @@ task('minify', [], function(params) {
   var all = '';
   var files = [ 'ext/js/jquery.js',
                 'ext/js/glMatrix-0.9.5.min.js',
-                'js/graphics.js',
+                'js/graphics-canvas.js',
                 'js/world.js',
                 'js/objects.js',
+                'js/input.js',
                 'js/main.js' ];
   files.forEach(function(file, i) {
       all += fs.readFileSync(file).toString();
