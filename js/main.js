@@ -1,26 +1,43 @@
+(function () {
 load_config = function () {
     $.getJSON("config.json");
 }
 
-game = function() {
-    g = {};
-    g.init = function () {
+states = [];
+
+game = {
+    // dealing with state
+    push_state: function(state) {
+        var last = states.last();
+        last && last.end();
+        states.push(state);
+        states.last().init(game);
+        states.last().start();
+    },
+    pop_state: function() {
+        states.pop().end();
+        states.last().start();
+    },
+
+    // saving/loading
+    save: {},
+
+    // game structure
+    init: function () {
         graphics.init();
-        $.getJSON("config.json", function (cfg) {
-            g.config = cfg;
-            world.load_stage(g.config.firststage);
-            g.gameloop();
-        });
-    };
-    g.gameloop = function () {
-        world.update();
-        graphics.draw(world.objects);
-        graphics.update();
-        // run at a slow speed, but don't overflow the stack
-        setTimeout(function () { g.gameloop(); }, 1000);
+        push_state(menu);
+        g.gameloop();
+    },
+    gameloop: function () {
+    	graphics.update();
+        states.forEach(function (s) { s.update(); });
+
+        // run at a slow speed, and don't overflow the stack
+        // this sucks but whatever
+        setTimeout(function () { g.gameloop(); }, 32);
     }
-    return g;
-}();
+};
+})();
 
 $(document).ready(function () {
     game.init();

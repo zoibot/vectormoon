@@ -1,5 +1,5 @@
 {
-"type": "Polygon",
+"type": "graphics.polygon",
 "animations": {
 "default": [[[0,0],[200,0],[200,200],[0,200]]]
 }

@@ -6,14 +6,21 @@ import sys
 
 import subprocess
 import select
-#TODO this requires python3, should make it so it works in both
-from http.server import HTTPServer, SimpleHTTPRequestHandler
+try:
+    # python 3
+    from http.server import HTTPServer, SimpleHTTPRequestHandler
+except:
+    # python 2
+    from BaseHTTPServer import HTTPServer
+    from SimpleHTTPServer import SimpleHTTPRequestHandler
 
 #assuming we're in project root
 os.chdir('pub')
 
+is_win = sys.platform == 'win32'
+
 def make():
-    print(subprocess.call('jake', cwd='..'))
+    print(subprocess.call('jake', cwd='..', shell=is_win))
     has_changed() # we know it just changed, so ignore this one
 
 httpd = HTTPServer(('', 8000), SimpleHTTPRequestHandler)
@@ -26,8 +33,12 @@ def has_changed():
     last_changed = os.path.getmtime('.')
     return old_time < last_changed
 
+inputs = [httpd, sys.stdin]
+# work around broken select on windows
+if is_win:
+    inputs = [httpd]
 while True:
-    ready, _, _ = select.select([httpd, sys.stdin], [], [])
+    ready, _, _ = select.select(inputs, [], [])
     for f in ready:
         if f == httpd:
             # have a server request
@@ -37,12 +48,10 @@ while True:
             httpd.handle_request()
         elif f == sys.stdin:
             cmd = sys.stdin.readline().strip()
-            print(cmd)
             if cmd in ['r','']:
                 print('Forcing make')
                 make()
             elif cmd in ['q', 'quit', 'exit']:
                 print('Quitting')
                 break
-
 
