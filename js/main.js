@@ -25,8 +25,8 @@ game = {
     // game structure
     init: function () {
         graphics.init();
-        push_state(menu);
-        g.gameloop();
+        game.push_state(menu);
+        game.gameloop();
     },
     gameloop: function () {
     	graphics.update();
@@ -34,7 +34,7 @@ game = {
 
         // run at a slow speed, and don't overflow the stack
         // this sucks but whatever
-        setTimeout(function () { g.gameloop(); }, 32);
+        setTimeout(function () { game.gameloop(); }, 32);
     }
 };
 })();

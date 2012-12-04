@@ -5,7 +5,7 @@
 
     function new_game() {
         //load_initial_save();
-        push_state(world);
+        game.push_state(world);
     }
     
     options_menu = { "back": up }
@@ -46,6 +46,7 @@
             y += 20;
         }
         select(0);
+        $(document).keyup(_keypress);
     }
 
     function end() {
@@ -53,6 +54,7 @@
         cur_menus = [];
         option_text = [];
         cur_option = 0;
+        $(document).unbind("keyup", _keypress);
     }
 
     function select(option) {
@@ -61,12 +63,22 @@
         option_text[cur_option].color = [0,255,0,255];
     }
 
+    function _keypress(ev) {
+        if (ev.keyCode === 38) {
+            select((cur_option - 1).mod(option_text.length));
+        } else if (ev.keyCode === 40) {
+            select((cur_option + 1).mod(option_text.length));
+        } else if (ev.keyCode === 13) {
+            var menu = cur_menus.last();
+            menu[Object.keys(menu)[cur_option]]();
+        }
+    }
+
     function update() {
         if (!active) return; 
         var d = new Date().getTime();
-        if (d - last_move > 200) {
+/*        if (d - last_move > 200) {
             if (keyboard.pressed(38)) {
-                select((cur_option - 1).mod(option_text.length));
                 last_move = d;
             } else if (keyboard.pressed(40)) {
                 select((cur_option + 1).mod(option_text.length));
@@ -77,6 +89,7 @@
             var menu = cur_menus.last();
             menu[Object.keys(menu)[cur_option]]();
         }
+        */
         graphics.draw(option_text);
     }
 

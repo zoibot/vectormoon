@@ -106,10 +106,9 @@ graphics.text = function (text, x, y, deg, color) {
 graphics.text.prototype.draw = function (ctx) {
     // TODO repeated
     ctx.save();
-    //ctx.translate(x+0.5, y+0.5);
-    //ctx.rotate(deg);
-    ctx.strokeStyle = writeColor(this.color);
-    ctx.strokeText(this.text, this.x, this.y);
+    ctx.font = "12pt arial";
+    ctx.fillStyle = writeColor(this.color);
+    ctx.fillText(this.text, this.x, this.y);
 };
 
 graphics.hud = function () {

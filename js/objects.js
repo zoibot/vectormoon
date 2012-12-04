@@ -50,13 +50,40 @@ objects.register_object('player', function () {
                 new_events.push(new events.hit(x, y));
 
             return new_events;
+        },
+        hits: function (x, y) {
+            return false;
         }
     };
 });
 
+objects.register_object('fixed', function (pos, name, sprite_str) {
+    console.log(sprite_str);
+    var graphic = new graphics.sprite(sprite_str);
+    var x = pos[0];
+    var y = pos[1];
+    var name = name;
+    var angle = 0;
+    return {
+        draw: function (ctx) {
+            graphic.draw(ctx, x, y, angle, 'default');
+        },
+        update: function () {
+        },
+        hits: function (ex, ey) {
+            return Math.abs(ex - x) + Math.abs(ey - y) < 20;
+        },
+        handle: function (ev) {
+            if (ev.type === 'touch') {
+                console.log(name + ' got touched!!!!');
+            }
+        }
+    };
+});
+
+
 // Background
 objects.register_object('background', function (pos, name, sprite_str) {
-    console.log(sprite_str);
     var graphic = new graphics.sprite(sprite_str);
     var x = pos[0];
     var y = pos[1];
@@ -65,6 +92,9 @@ objects.register_object('background', function (pos, name, sprite_str) {
             graphic.draw(ctx, x, y, 0, 'default');
         },
         update: function () {
+        },
+        hits: function (ex, ey) {
+            return x === ex && y === ey;
         }
     };
 });
