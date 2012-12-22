@@ -5,7 +5,6 @@ graphics
 - add scale to sprites
 
 game engine
-- objects are currently not extendable/reusable at all, need to fix that
 - add portals to other maps
 - support blocking/unblocking messages to player
 - create inventory/item system

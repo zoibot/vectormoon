@@ -40,10 +40,10 @@
         active = true;
         option_text = [];
         cur_option = 0;
-        y = 200;
+        y = 400;
         for (var key in cur_menus[cur_menus.length-1]) {
-            option_text.push(new graphics.text(key, 20, y));
-            y += 20;
+            option_text.push(new graphics.text(key, 100, y, null, null, "20pt arial"));
+            y += 40;
         }
         select(0);
         $(document).keyup(_keypress);
@@ -77,19 +77,6 @@
     function update() {
         if (!active) return; 
         var d = new Date().getTime();
-/*        if (d - last_move > 200) {
-            if (keyboard.pressed(38)) {
-                last_move = d;
-            } else if (keyboard.pressed(40)) {
-                select((cur_option + 1).mod(option_text.length));
-                last_move = d;
-            }
-        }
-        if (keyboard.pressed(13)) {
-            var menu = cur_menus.last();
-            menu[Object.keys(menu)[cur_option]]();
-        }
-        */
         graphics.draw(option_text);
     }
 

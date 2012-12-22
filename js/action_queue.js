@@ -1,6 +1,6 @@
 (function () {
     var queue = [];
-    action_queue = {
+    window.action_queue = {
         enqueue: function (action) {
             queue.push(action);
             if (queue.length === 1) {
