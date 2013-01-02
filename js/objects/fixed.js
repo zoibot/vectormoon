@@ -16,7 +16,8 @@
     },
     fixed.prototype.handle = function (ev) {
         if (ev.type === 'touch') {
-            console.log(this.name + ' got touched!!!!');
+            //console.log(this.name + ' got touched!!!!');
+            action_queue.enqueue(new actions.textbox("something got touched this is a test of some very very long text lala lorem ipsum shift is intentionally generic; this method can be called or applied to objects resembling arrays. Objects which do not contain a length property reflecting the last in a series of consecutive, zero-based numerical properties may not behave in any meaningful manner."));
         }
     }
 })();

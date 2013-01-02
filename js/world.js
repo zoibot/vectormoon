@@ -55,5 +55,8 @@ world = (function () {
     w.objects = function () {
         return local_objects;
     };
+    w.add_object = function (object) {
+        local_objects.push(object);
+    };
     return w;
 })();

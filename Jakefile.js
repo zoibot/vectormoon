@@ -15,6 +15,8 @@ task('minify', [], function(debug) {
                 'js/objects/textbox.js',
                 'js/input.js',
                 'js/events.js',
+                'js/action_queue.js',
+                'js/actions/textbox.js',
                 'js/menu.js',
                 'js/main.js' 
               ];

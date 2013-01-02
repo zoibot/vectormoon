@@ -24,7 +24,7 @@
     actions.simultaneous = function (actions) {
         this.actions = actions;
     };
-    actions.simultaneous.protoype.update = function () {
+    actions.simultaneous.prototype.update = function () {
         this.actions.forEach(function (action) {
             action.update();
         });
