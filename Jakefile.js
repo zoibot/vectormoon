@@ -11,6 +11,7 @@ task('minify', [], function(debug) {
                 'js/objects.js',
                 'js/objects/player.js',
                 'js/objects/fixed.js',
+                'js/objects/portal.js',
                 'js/objects/background.js',
                 'js/objects/textbox.js',
                 'js/input.js',

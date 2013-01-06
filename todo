@@ -1,15 +1,17 @@
+
 tools
 - level editor
 
 graphics
-- add scale to sprites
 
 game engine
 - add portals to other maps
-- support blocking/unblocking messages to player
+- support unblocking messages to player
 - create inventory/item system
-- create a shop you can go to
+- create a shop
 
+content
+- add a couple maps
 items
 - some usable items- hoe + seeds?
 

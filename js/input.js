@@ -7,8 +7,9 @@
         _keys[e.keyCode] = false;
     });
     keyboard = {
+        disabled: false,
         pressed: function (keycode) {
-            return !!_keys[keycode];
+            return !!_keys[keycode] && !this.disabled;
         }
     };
 })();

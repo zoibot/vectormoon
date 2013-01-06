@@ -4,8 +4,9 @@
                   "options": function () { switch_menu() } };
 
     function new_game() {
-        //load_initial_save();
-        game.push_state(world);
+        game.load_initial_save().then(function () { 
+            game.push_state(world);
+        });
     }
     
     options_menu = { "back": up }

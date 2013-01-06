@@ -1,7 +1,4 @@
 (function () {
-load_config = function () {
-    $.getJSON("config.json");
-}
 
 states = [];
 
@@ -20,7 +17,18 @@ game = {
     },
 
     // saving/loading
-    save: {},
+    save_state: {},
+    load_initial_save: function () {
+        var deferred = $.Deferred();
+        var _this = this;
+        $.getJSON("initial_save.json").done(function (save_state) {
+            _this.save_state = save_state;
+            deferred.resolve();
+        });
+        return deferred.promise();
+    },
+    load_save: function (playername) {
+    },
 
     // game structure
     init: function () {

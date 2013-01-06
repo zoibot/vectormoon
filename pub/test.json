@@ -1,8 +1,0 @@
-{
-    "name": "Test",
-    "objects": [
-                ["player"],
-                ["background", [100,100], "field", "gfx/field.json"],
-                ["fixed", [200,50], "hammer", "gfx/hammer.json"]
-               ]
-}

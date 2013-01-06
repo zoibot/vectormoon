@@ -1,8 +1,10 @@
 (function () {
     var player = window.objects.player = function () {
         this.graphic = new graphics.sprite("gfx/player.json");
+        this.location = "Test";
         this.x = this.y = 10;
         this.angle = 0;
+        this.name = "player";
     };
     player.prototype.draw = function (ctx) {
         this.graphic.draw(ctx, this.x, this.y, this.angle, 'stand');
@@ -25,9 +27,9 @@
             this.angle = Math.atan2(vy, vx);
         
         // interact with world
-        var new_events = [new events.touch(this.x, this.y)];
+        var new_events = [new events.touch(this.x, this.y, this)];
         if (keyboard.pressed(32))
-            new_events.push(new events.hit(this.x, this.y));
+            new_events.push(new events.hit(this.x, this.y, this));
 
         return new_events;
     };

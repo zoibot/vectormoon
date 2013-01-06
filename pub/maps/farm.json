@@ -1,0 +1,8 @@
+{
+    "name": "Test",
+    "objects": {
+                "field": ["background", [100,100], "field", "gfx/field.json"],
+                "hammer": ["fixed", [200,50], "hammer", "gfx/hammer.json", "This is a hammer! Its stuck in the ground"],
+                "left": ["portal", [0,100], "left", "gfx/hammer.json", 0, 0]
+               }
+}
