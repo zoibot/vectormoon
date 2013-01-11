@@ -1,6 +1,7 @@
 (function () {
     var portal = window.objects.portal = function (pos, name, sprite_str, destination_map, destination_pos) {
         objects.fixed.call(this, pos, name, sprite_str);
+        this.destination_map 
     };
 
     // TODO make utility function
@@ -16,7 +17,7 @@
 
     portal.prototype.handle = function (ev) {
         if (ev.type === "touch") {
-            action_queue.enqueue(new actions.textbox("you should be moving..."));
+            world.load_stage("maps/path");
         }
     };
 })();

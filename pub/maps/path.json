@@ -1,0 +1,7 @@
+{
+    "name": "Path",
+    "objects": {
+                "path": ["background", [100,100], "path", "gfx/path.json"],
+                "down": ["edge_portal", "bottom", "maps/farm"]
+               }
+}

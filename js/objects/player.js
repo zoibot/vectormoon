@@ -14,15 +14,17 @@
         var vx = 0;
         var vy = 0;
         if (keyboard.pressed(37))
-            vx -= 2;
+            vx -= 4;
         if (keyboard.pressed(38))
-            vy -= 2;
+            vy -= 4;
         if (keyboard.pressed(39))
-            vx += 2;
+            vx += 4;
         if (keyboard.pressed(40))
-            vy += 2;
+            vy += 4;
         this.x += vx;
         this.y += vy;
+        this.x = clamp(this.x, 800);
+        this.y = clamp(this.y, 600);
         if (vx || vy)
             this.angle = Math.atan2(vy, vx);
         

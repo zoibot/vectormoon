@@ -7,6 +7,7 @@ graphics = function() {
         $("#cv_wrap").append(cv);
         $("#cv_wrap").css({"margin-left": "auto", "margin-right": "auto", "width": "800px"});
         ctx = cv[0].getContext("2d");
+        ctx.lineJoin = "round";
         console.log('graphics initialized '+ctx);
         //cv.css('border', '2px solid red');
     };
@@ -43,16 +44,28 @@ function writeColor(color) {
     return result;
 }
 
-graphics.polygon.prototype.draw = function (ctx) {
+graphics.polygon.prototype.draw = function (ctx, scale) {
     var points = this.points;
+    scale = scale || 1;
     ctx.strokeStyle = writeColor(this.color);
-    ctx.beginPath();
-    ctx.moveTo(points[0][0], points[0][1]);
-    for(var i = 1, length = this.points.length; i < length; i++) {
-        ctx.lineTo(points[i][0], points[i][1]);
+
+    var width = 5;
+    while (width > 0)
+    {
+        ctx.globalAlpha = 1/(width);
+        ctx.lineWidth = width;
+
+        ctx.beginPath();
+        ctx.moveTo(points[0][0] * scale, points[0][1] * scale);
+        for(var i = 1, length = this.points.length; i < length; i++) {
+            ctx.lineTo(points[i][0] * scale, points[i][1] * scale);
+        }
+        ctx.lineTo(points[0][0] * scale, points[0][1] * scale);
+        ctx.stroke();
+
+        width--;
     }
-    ctx.lineTo(points[0][0], points[0][1]);
-    ctx.stroke();
+
 };
 
 graphics.sprite = function (anims, color, imgs) {
@@ -67,9 +80,8 @@ graphics.sprite.prototype.draw = function (ctx, x, y, deg, state) {
     if (this.anims) {
         ctx.save();
         ctx.translate(x+0.5, y+0.5);
-        ctx.scale(this.scale, this.scale);
         ctx.rotate(deg);
-        this.anims[state][this.frame].draw(ctx);
+        this.anims[state][this.frame].draw(ctx, this.scale);
         ctx.restore();
     } else {
         console.log("Loading...");

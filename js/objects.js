@@ -4,8 +4,8 @@ objects = function () {
     o = {};
     obj = {};
     o.construct_object = function (description) {
-        name = description[0];
-        args = description.slice(1);
+        var name = description[0];
+        var args = description.slice(1);
         if(typeof window.objects[name] !== 'function') {
             throw 'crap no object '+name;
         }

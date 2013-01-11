@@ -6,9 +6,12 @@ graphics
 
 game engine
 - add portals to other maps
-- support unblocking messages to player
+- edge portals
+- support unblocking ("inline"?) messages to player
 - create inventory/item system
 - create a shop
+- collisions by winding number
+- component based objects
 
 content
 - add a couple maps

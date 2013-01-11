@@ -40,7 +40,7 @@ world = (function () {
 
     w.load_stage = function (name) {
         if (name in stage_cache) {
-            w.end_load_stage(data);
+            w.end_load_stage(stage_cache[name]);
         } else {
             $.getJSON(name+".json",
                 function (data) {
@@ -58,7 +58,7 @@ world = (function () {
             }
         });
         this.stage = data;
-        console.log('loaded stage '+name);
+        console.log('loaded stage '+data.name);
         console.log(local_objects);
     };
 

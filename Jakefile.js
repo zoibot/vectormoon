@@ -11,6 +11,7 @@ task('minify', [], function(debug) {
                 'js/objects.js',
                 'js/objects/player.js',
                 'js/objects/fixed.js',
+                'js/objects/edge_portal.js',
                 'js/objects/portal.js',
                 'js/objects/background.js',
                 'js/objects/textbox.js',
@@ -18,6 +19,7 @@ task('minify', [], function(debug) {
                 'js/events.js',
                 'js/action_queue.js',
                 'js/actions/textbox.js',
+                'js/actions/teleport.js',
                 'js/menu.js',
                 'js/main.js' 
               ];

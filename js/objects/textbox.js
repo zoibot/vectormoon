@@ -86,6 +86,8 @@
         ctx.save();
         ctx.strokeStyle = "rgb(255,255,255)";
         ctx.strokeRect(10, 460, 780, 130);
+        ctx.fillStyle = "rgb(0, 0, 0)";
+        ctx.fillRect(10, 460, 780, 130);
         ctx.fillStyle = "rgb(255,255,255)";
         this.lines.forEach(function (line, index) {
             ctx.fillText(line, 30, 490 + index * 30);

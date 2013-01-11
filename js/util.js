@@ -11,3 +11,9 @@ Array.prototype.remove = function (item) {
 Number.prototype.mod = function (n) {
     return ((this%n)+n)%n;
 };
+
+function clamp(val, max) {
+    if (val < 0) return 0;
+    if (val > max) return max;
+    return val;
+}
