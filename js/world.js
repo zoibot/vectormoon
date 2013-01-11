@@ -39,15 +39,19 @@ world = (function () {
     w.start = w.end = function () {};
 
     w.load_stage = function (name) {
+        var deferred = $.Deferred();
         if (name in stage_cache) {
             w.end_load_stage(stage_cache[name]);
+            deferred.resolve();
         } else {
             $.getJSON(name+".json",
                 function (data) {
                     stage_cache[name] = data;
                     w.end_load_stage(data);
+                    deferred.resolve();
                 });
         }
+        return deferred.promise();
     };
     w.end_load_stage = function (data) {
         local_objects = $.map(data.objects, objects.construct_object);
@@ -60,6 +64,9 @@ world = (function () {
         this.stage = data;
         console.log('loaded stage '+data.name);
         console.log(local_objects);
+    };
+    w.stage_name = function () {
+        return this.stage.name;
     };
 
     w.update = function (timing) {

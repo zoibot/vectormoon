@@ -1,5 +1,5 @@
 {
-    "name": "Farm",
+    "name": "maps/farm",
     "objects": {
                 "field": ["background", [100,100], "field", "gfx/field.json"],
                 "pond": ["background", [300,300], "pond", "gfx/pond.json"],

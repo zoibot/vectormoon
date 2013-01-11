@@ -17,7 +17,9 @@
 
     edge_portal.prototype.handle = function (ev) {
         if (ev.type === "touch") {
+            ev.source.location = this.destination_map;
             world.load_stage(this.destination_map);
+
             switch (this.edge) {
                 case "top":
                     ev.source.y = 585;

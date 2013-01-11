@@ -1,7 +1,7 @@
 (function () {
     var player = window.objects.player = function () {
         this.graphic = new graphics.sprite("gfx/player.json");
-        this.location = "Test";
+        this.location = "maps/farm";
         this.x = this.y = 10;
         this.angle = 0;
         this.name = "player";

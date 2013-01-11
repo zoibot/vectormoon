@@ -1,8 +1,7 @@
 {
     "stage":"maps/farm",
     "world_objects": [
-        ["player"],
-        //["intro"]
+            ["player"]
         ],
     "flags": {}
 }
