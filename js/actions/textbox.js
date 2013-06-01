@@ -1,12 +1,13 @@
 (function ()
 {
-    window.actions.textbox = function (text, choices) {
+    window.actions.textbox = function (text, choices, blocking) {
         this.object = new objects.textbox(text, choices);
+        this.blocking = blocking;
     };
 
     window.actions.textbox.prototype.start = function () {
         world.add_object(this.object);
-        keyboard.disabled = true;
+        keyboard.disabled = this.blocking;
     };
 
     window.actions.textbox.prototype.update = function () {

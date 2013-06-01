@@ -9,7 +9,6 @@ graphics = function() {
         ctx = cv[0].getContext("2d");
         ctx.lineJoin = "round";
         console.log('graphics initialized '+ctx);
-        //cv.css('border', '2px solid red');
     };
     g.draw = function (objects) {
         for(var i = 0; i < objects.length; i++) {
@@ -65,12 +64,49 @@ graphics.polygon.prototype.draw = function (ctx, scale) {
 
         width--;
     }
-
 };
+
+graphics.polygon.prototype.contains = function (x, y, pos_x, pos_y, scale, deg) {
+    var rotated_points = [];
+    var cos = Math.cos(Math.PI * (deg/180));
+    var sin = Math.sin(Math.PI * (deg/180));
+    // foreach point, rotate it, then push the edge on to a list
+    var points = this.points;
+    for (var i = 0, length = points.length; i < length; i++) {
+        rotated_points.push([
+                                pos_x + scale * (points[i][0] * cos - points[i][1] * sin),
+                                pos_y + scale * (points[i][0] * sin + points[i][1] * cos)
+                            ]);
+    }
+    var crossing_number = 0;
+    var considered = 0;
+    // foreach edge, determine if it hits
+    for (var i = 0, length = rotated_points.length; i < length; i++) {
+        var start = rotated_points[i];
+        var end = i+1 === length ? rotated_points[0] : rotated_points[i+1];
+        if((end[1]-start[1] < 0 /* upward */ && start[1] >= y && end[1] < y)
+           || (end[1]-start[1] > 0 /* downward */ && start[1] < y && end[1] >= y)) {
+            considered++;
+            var xcross;
+            if (end[0]-start[0] === 0) { 
+                xcross = end[0];
+            } else {
+                xcross = start[0] + ((end[0] - start[0])/(end[1]-start[1])) * (y - start[1]);
+            }
+            if (x < xcross)
+            {
+                crossing_number++;
+            }
+        }
+    }
+
+    return crossing_number & 1;
+}
 
 graphics.sprite = function (anims, color, imgs) {
     this.anims = null;
     this.load_anims(anims);
+    this.loaded = $.Deferred();
     this.color = color || [255,255,255,255];
     this.imgs = imgs || [];
     this.frame = 0;
@@ -86,6 +122,11 @@ graphics.sprite.prototype.draw = function (ctx, x, y, deg, state) {
     } else {
         console.log("Loading...");
     }
+};
+
+graphics.sprite.prototype.contains = function (x, y, x_pos, y_pos, deg, state) {
+    var graphic = this.anims[state][this.frame];
+    return graphic.contains && graphic.contains(x, y, x_pos, y_pos, this.scale, deg);
 };
 
 graphics.sprite.prototype.load_anims = function (filename) {
@@ -108,6 +149,7 @@ graphics.sprite.prototype.load_anims = function (filename) {
             });
         };
         _this.anims = anims;
+        _this.loaded.resolve();
     });
 };
 

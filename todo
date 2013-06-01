@@ -5,12 +5,8 @@ tools
 graphics
 
 game engine
-- add portals to other maps
-- edge portals
-- support unblocking ("inline"?) messages to player
 - create inventory/item system
 - create a shop
-- collisions by winding number
 - component based objects
 
 content
@@ -18,7 +14,12 @@ content
 items
 - some usable items- hoe + seeds?
 
+infrastructure
+- switch to require
+
 server
+- create "state" system, decide when to update server with state, etc
+- how to define certain object properties as state
 - start creating tables, defining interface
 - all actions sent to server
 - most stuff will just be server validation and acceptance but I could keep some logic on the server if I wanted to keep it secret-ish

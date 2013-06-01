@@ -17,3 +17,16 @@ function clamp(val, max) {
     if (val > max) return max;
     return val;
 }
+
+$(function () {
+    // TODO make a class
+    $debug = $("<div></div>").appendTo(document.body);
+    watches = {};
+});
+
+function watch(name, val)
+{
+    var $watch = watches[name] = watches[name] || $("<div>").appendTo($debug);
+    $watch.text(name + ": " + val);
+}
+

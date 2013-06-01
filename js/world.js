@@ -39,7 +39,6 @@ world = (function () {
     w.start = w.end = function () {};
 
     w.load_stage = function (name) {
-        var deferred = $.Deferred();
         if (name in stage_cache) {
             w.end_load_stage(stage_cache[name]);
             deferred.resolve();
@@ -48,33 +47,53 @@ world = (function () {
                 function (data) {
                     stage_cache[name] = data;
                     w.end_load_stage(data);
-                    deferred.resolve();
                 });
         }
-        return deferred.promise();
+        this.loading = $.Deferred()
+        return this.loading.promise();
     };
     w.end_load_stage = function (data) {
+        var load_promises = [];
+        
+        // load objects local to this map
         local_objects = $.map(data.objects, objects.construct_object);
+        local_objects.forEach(function (obj) {
+            load_promises.push(obj.loaded);
+        });
+
+        // load world objects that happen to be on this map
         world_objects.forEach(function (obj) {
-            if (obj.location === data.name)
-            {
+            if (obj.location === data.name) {
                 local_objects.push(obj);
+                load_promises.push(obj.loaded);
             }
         });
-        this.stage = data;
-        console.log('loaded stage '+data.name);
-        console.log(local_objects);
+
+        var _this = this;
+
+        $.when.apply($, load_promises).then(function () {
+            _this.stage = data;
+            console.log('loaded stage '+data.name);
+            console.log(local_objects);
+            _this.loading.resolve();
+        });
     };
     w.stage_name = function () {
         return this.stage.name;
     };
 
     w.update = function (timing) {
+        if (this.loading && !this.loading.isResolved())
+        {
+            document.title="loading-v";
+            return;
+        }
+        document.title="vectormoon";
     	graphics.draw(local_objects);
         action_queue.update();
         var ev;
         for (var i = 0; i < local_objects.length; i++) {
-            ev = local_objects[i].update();
+            ev = local_objects[i].update(local_objects);
             if (ev) {
                 event_queue.push.apply(event_queue, ev);
             }
