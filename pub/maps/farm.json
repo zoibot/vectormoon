@@ -4,6 +4,7 @@
                 "field": ["background", [100,100], "field", false, "gfx/field.json"],
                 "pond": ["background", [300,300], "pond", true, "gfx/pond.json"],
                 "hammer": ["fixed", [200,50], "hammer", "gfx/hammer.json", "This is a hammer! It's stuck in the ground."],
+                "hoe": ["item", [300,50], 2],
                 "top": ["edge_portal", "top", "maps/path"]
                }
 }

@@ -32,16 +32,21 @@ world = (function () {
 
     w.init = function (game) {
         var state = game.save_state;
-        world_objects = $.map(state.world_objects, objects.construct_object);
-        world.load_stage(state.stage);
+        item_db.populate().then(function ()
+        {
+            world_objects = $.map(state.world_objects, objects.construct_object);
+            world.load_stage(state.stage);
+        });
     }
 
     w.start = w.end = function () {};
 
     w.load_stage = function (name) {
+        // TODO need to save old stage here
+        this.loading = $.Deferred()
         if (name in stage_cache) {
             w.end_load_stage(stage_cache[name]);
-            deferred.resolve();
+            this.loading.resolve();
         } else {
             $.getJSON(name+".json",
                 function (data) {
@@ -49,16 +54,18 @@ world = (function () {
                     w.end_load_stage(data);
                 });
         }
-        this.loading = $.Deferred()
         return this.loading.promise();
     };
     w.end_load_stage = function (data) {
         var load_promises = [];
+
+        var promise_names = [];
         
         // load objects local to this map
         local_objects = $.map(data.objects, objects.construct_object);
         local_objects.forEach(function (obj) {
             load_promises.push(obj.loaded);
+            promise_names.push(obj.name || JSON.stringify(obj));
         });
 
         // load world objects that happen to be on this map
@@ -66,10 +73,33 @@ world = (function () {
             if (obj.location === data.name) {
                 local_objects.push(obj);
                 load_promises.push(obj.loaded);
+                promise_names.push(obj.name || JSON.stringify(obj));
             }
         });
 
+        function watch_promises()
+        {
+            var string = "";
+            for (var i = 0; i < load_promises.length; i++)
+            {
+                if (load_promises[i] && !load_promises[i].isResolved())
+                {
+                    string += promise_names[i] + " ";
+                }
+            }
+            watch("loading", string);
+        }
+
+        for (var i = 0; i < load_promises.length; i++)
+        {
+            var promise = load_promises[i];
+            promise && promise.then(watch_promises);
+        }
+        watch_promises();
+
         var _this = this;
+        console.log(load_promises);
+        console.log(promise_names);
 
         $.when.apply($, load_promises).then(function () {
             _this.stage = data;

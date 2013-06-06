@@ -23,7 +23,7 @@
             }
             if (_this.waiting) {
                 _this.lines = [];
-                _this.waiting = false
+                _this.waiting = false;
             } else {
                 // skip ahead 
                 _this.placed += _this.to_place;
