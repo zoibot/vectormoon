@@ -1,5 +1,9 @@
 (function () {
 
+var requestAnimationFrame = window.requestAnimationFrame ||
+                            window.mozRequestAnimationFrame ||
+                            window.webkitRequestAnimationFrame ||
+                            function (f) { setTimeout(f, 32); };
 states = [];
 
 game = {
@@ -34,15 +38,19 @@ game = {
     init: function () {
         graphics.init();
         game.push_state(menu);
-        game.gameloop();
+        requestAnimationFrame(function (time) { game.gameloop(time));
     },
-    gameloop: function () {
+    gameloop: function (time) {
     	graphics.update();
-        states.forEach(function (s) { s.update(); });
+        keyboard.disabled = true;
+        for (var i = 0; i < states.length - 1; i++)
+        {
+            states[i].update();
+        }
+        keyboard.disabled = false;
+        states.last().update();
 
-        // run at a slow speed, and don't overflow the stack
-        // this sucks but whatever
-        setTimeout(function () { game.gameloop(); }, 32);
+        requestAnimationFrame(function (time) { game.gameloop(time) });
     }
 };
 })();
