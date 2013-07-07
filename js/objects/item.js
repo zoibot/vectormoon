@@ -1,7 +1,7 @@
 (function () {
     var item = window.objects.item = function (pos, item_id) {
         this.item_details = item_db.lookup_item(item_id);
-        this.graphic = new graphics.sprite(this.item_details.sprite_name);
+        this.graphic = item_db.get_sprite(item_id);
         this.loaded = this.graphic.loaded;
         this.x = pos[0];
         this.y = pos[1];
@@ -22,6 +22,7 @@
             // get item
             action_queue.enqueue(new actions.textbox(this.description));
             world.remove_object(this);
+            inventory.add_item(this.item_details);
         }
     }
 })();

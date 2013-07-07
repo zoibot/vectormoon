@@ -61,6 +61,12 @@
         if (keyboard.pressed(32))
             new_events.push(new events.hit(this.x, this.y, this));
 
+        if (keyboard.pressed(73))
+        {
+            // open inventory menu
+            game.push_state(inventory);
+        }
+
         return new_events;
     };
     player.prototype.hits = function (x, y) {
