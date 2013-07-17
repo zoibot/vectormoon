@@ -1,0 +1,43 @@
+Overview
+* Inspired by KOL/Harvestmoon/?
+* Takes place on a space station
+* Set length quest that you repeat for speed, gaining skills in a meta game
+
+General Notes
+* Go to a place to get some macguffins, can only carry back some at a time
+* Each one you can use to teleport back and gain another skill
+* Carrying capacity is limited
+* Survival is important- making sure you have enough food, shelter, etc
+* Robot companion to send back items?
+* Start in populated town with a plot of land for stuff, slowly
+
+Plot
+* Space station is huge but failing due to something, need to recover these energy pods or whatever
+* Supplies need to be reset every time you get something for the speedrun aspect to work
+
+Farm
+* Start on farm, initial part of the game is growing stuff to get supplies for the trip
+
+Robots
+* Get a companion with various trade offs like carrying capacity vs speed going back to town vs utility in other things
+
+Shelter
+* Different types of shelter to carry- weight trade offs
+* Different places might have different types of bonuses, interact with type of shelter
+
+(so far this has been an interesting framework to set up something like KOL where you have different ways to optimize different stats and items)
+Obstacles- "Nature"
+* cliff
+  * possible solutions: ladder (uses wood, weight), jetpack (uses fuel, weight)
+  * relevant stats: carpentry if you want to make the ladder right there, piloting for jetpack
+* chasm
+  * possible solutions: bridge (uses wood, weight), jetpack (uses fuel, weight)
+  * relevant stats: same
+* river
+  * possible solutions: bridge (uses wood, weight), jetpack (uses fuel, weight), boat (similar to jetpack but no fuel, can maybe also be used to travel along river)
+  * relevant stats: same, some other skill for boats
+* door
+  * explosives, lockpick, "knowledge", brute force
+  * relevant stats: intelligence, strength etc
+
+Obstacles
