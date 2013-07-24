@@ -12,6 +12,7 @@ task('minify', [], function(debug) {
                 'js/objects/player.js',
                 'js/objects/fixed.js',
                 'js/objects/edge_portal.js',
+                'js/objects/hud.js',
                 'js/objects/item.js',
                 'js/objects/portal.js',
                 'js/objects/background.js',

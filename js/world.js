@@ -10,16 +10,35 @@ world = (function () {
 
     var stage_cache = {};
 
+    function find_by_position(x, y) {
+        var objects = [];
+        for (var i = 0; i < local_objects.length; i++) {
+            if (local_objects[i].hits && local_objects[i].hits(x, y)) {
+                objects.push(local_objects[i]);
+            }
+        }
+        return objects;
+    }
+
+    function find_by_type(type) {
+        var objects = [];
+        for (var i = 0; i < local_objects.length; i++) {
+            if (local_objects[i].constructor === type) {
+                objects.push(local_objects[i]);
+            }
+        }
+        return objects;
+    }
+
     function resolve(ev) {
         ev.targets = [];
         var new_history = {};
-        for (var i = 0; i < local_objects.length; i++) {
-            if (local_objects[i].hits && local_objects[i].hits(ev.x, ev.y)) {
-                if (!event_history[ev.type+":"+ev.source.name+"->"+local_objects[i].name]) {
-                    ev.targets.push(local_objects[i]);
-                }
-                new_history[ev.type+":"+ev.source.name+"->"+local_objects[i].name] = true;
+        var targets = find_by_position(ev.x, ev.y)
+        for (var i = 0; i < targets.length; i++) {
+            if (!event_history[ev.type+":"+ev.source.name+"->"+local_objects[i].name]) {
+                ev.targets.push(targets[i]);
             }
+            new_history[ev.type+":"+ev.source.name+"->"+local_objects[i].name] = true;
         }
         event_history = new_history;
     }
@@ -70,7 +89,7 @@ world = (function () {
 
         // load world objects that happen to be on this map
         world_objects.forEach(function (obj) {
-            if (obj.location === data.name) {
+            if (obj.location === data.name || !obj.location) {
                 local_objects.push(obj);
                 load_promises.push(obj.loaded);
                 promise_names.push(obj.name || JSON.stringify(obj));
@@ -156,5 +175,6 @@ world = (function () {
             world_objects.splice(i, 1);
         }
     };
+    w.find_by_type = find_by_type;
     return w;
 })();

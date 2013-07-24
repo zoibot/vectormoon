@@ -38,7 +38,7 @@ game = {
     init: function () {
         graphics.init();
         game.push_state(menu);
-        requestAnimationFrame(function (time) { game.gameloop(time));
+        requestAnimationFrame(function (time) { game.gameloop(time) });
     },
     gameloop: function (time) {
     	graphics.update();

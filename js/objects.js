@@ -20,15 +20,4 @@ objects = function () {
     return o;
 }();
 
-// These should all be split out into separate files eventually
-// HUD
-/*var hud_gfx = graphics.hud();
-objects.register_object('hud', function () {
-    return {
-        draw: function (ctx) {
-            hud_gfx(ctx);
-        }
-    };
-});*/
-
 })();

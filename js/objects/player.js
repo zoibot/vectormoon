@@ -24,7 +24,7 @@
             vy += 4;
         var newx = this.x + vx;
         var newy = this.y + vy;
-        newx = clamp(newx, 800);
+        newx = clamp(newx, 650);
         newy = clamp(newy, 600);
 
         var bad_pos;

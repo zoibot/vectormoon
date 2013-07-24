@@ -13,9 +13,9 @@
 },
 {
     "id": 3,
-    "name": "Seed",
-    "sprite_name": "gfx/hammer.json",
-    "description": "This is a crappy old seed"
+    "name": "Potato Seeds",
+    "sprite_name": "gfx/potatoseeds.json",
+    "description": "These are some crappy old potato seeds"
 }
 ]
 
