@@ -4,5 +4,8 @@
             ["player"],
             ["hud"]
         ],
-    "flags": {}
+    "flags": {},
+    "daily_flags": {
+        "item_pickups": {}
+    }
 }

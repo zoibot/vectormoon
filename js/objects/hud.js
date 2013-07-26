@@ -2,6 +2,8 @@
     var hud = window.objects.hud = function () {
     };
     hud.prototype.draw = function (ctx) {
+        var item1 = inventory.get_equipped();
+
         graphics.draw([{ draw: function (ctx) {
             // TODO draw this all to canvas and then blit
             ctx.beginPath();
@@ -17,7 +19,15 @@
             ctx.strokeStyle = writeColor([255,255,255,255]);
             ctx.stroke();
             ctx.closePath();
+
+            if (item1)
+            {
+                item_db.get_sprite(item1.id).draw(ctx, 660, 150, 0, 'default');
+                ctx.font = "10pt Arial";
+                ctx.fillText(item1.name, 660, 250);
+            }
         }}]);
+
     };
     hud.prototype.update = function () {
         if(!this.player)
