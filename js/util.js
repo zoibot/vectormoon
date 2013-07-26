@@ -27,6 +27,6 @@ $(function () {
 function watch(name, val)
 {
     var $watch = watches[name] = watches[name] || $("<div>").appendTo($debug);
-    $watch.text(name + ": " + val);
+    $watch.text(val ? name + ": " + val : "");
 }
 

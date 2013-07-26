@@ -134,7 +134,6 @@ world = (function () {
     w.update = function (timing) {
         if (this.loading && !this.loading.isResolved())
         {
-            document.title="loading-v";
             return;
         }
         document.title="vectormoon";
