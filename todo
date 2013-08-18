@@ -3,7 +3,7 @@ tools
 - level editor
 
 graphics
-- HUD
+- render things to offscreen canvas to improve performance
 
 game engine
 - create inventory/item system
@@ -12,6 +12,9 @@ game engine
 
 content
 - add a couple maps
+- exploration
+ - how does this work as far as randomness and such?
+
 items
 - some usable items- hoe + seeds?
 
