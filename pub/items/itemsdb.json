@@ -3,19 +3,36 @@
     "id": 1,
     "name": "Hammer",
     "sprite_name": "gfx/hammer.json",
-    "description": "This is a crappy old hammer"
+    "description": "This is a crappy old hammer",
+    "grabbable": false,
+    "consume": false,
+    "use": ["hammer"],
+    "handlers": {
+        "hoe" : "you hoed that biz"
+    }
 },
 {
     "id": 2,
     "name": "Hoe",
     "sprite_name": "gfx/hammer.json",
-    "description": "This is a crappy old hoe"
+    "description": "This is a crappy old hoe",
+    "grabbable": true,
+    "consume": false,
+    "use": ["hoe"]
 },
 {
     "id": 3,
     "name": "Potato Seeds",
     "sprite_name": "gfx/potatoseeds.json",
-    "description": "These are some crappy old potato seeds"
+    "description": "These are some crappy old potato seeds",
+    "grabbable": true
+},
+{
+    "id": 4,
+    "name": "Potato Plant",
+    "sprite_name": "gfx/potatoseeds.json",
+    "description": "This is a potato plant"
+    "grabbable": false
 }
 ]
 

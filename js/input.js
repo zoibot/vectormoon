@@ -8,8 +8,9 @@
     });
     keyboard = {
         disabled: false,
+        disabled_keys: [],
         pressed: function (keycode) {
-            return !!_keys[keycode] && !this.disabled;
+            return !!_keys[keycode] && !this.disabled && jQuery.inArray(keycode, this.disabled_keys) === -1;
         }
     };
 })();

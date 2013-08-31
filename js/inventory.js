@@ -63,7 +63,7 @@
     {
         switch (ev.keyCode)
         {
-            case 13: // enter
+            case 90: // z
                 var index = current_x + current_y * 7;
                 equipped = inventory_contents[index];
                 break;

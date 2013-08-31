@@ -5,6 +5,7 @@
         var item1 = inventory.get_equipped();
 
         graphics.draw([{ draw: function (ctx) {
+            ctx.save();
             // TODO draw this all to canvas and then blit
             ctx.beginPath();
             // draw right status
@@ -24,8 +25,9 @@
             {
                 item_db.get_sprite(item1.id).draw(ctx, 660, 150, 0, 'default');
                 ctx.font = "10pt Arial";
-                ctx.fillText(item1.name, 660, 250);
+                ctx.strokeText(item1.name, 660, 230);
             }
+            ctx.restore();
         }}]);
 
     };

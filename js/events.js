@@ -13,6 +13,12 @@
             this.y = y;
             this.source = source;
             return this;
+        },
+        use: function (item, x, y, source) {
+            this.type = item;
+            this.x = x;
+            this.y = y;
+            this.source = source;
         }
     };
 })();

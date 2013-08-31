@@ -1,0 +1,10 @@
+items need to do things when you activate them
+need a simple scripting language
+could be JS but that might be repetitive?
+maybe could call into set of JS functions?
+["triggerEvent", "hoe"]
+["writeFlag", "quest5", "done"]
+and so on
+then I'd have actions = {}
+actions.triggerEvent = blah
+could combine with action queue and just support synchronous actions

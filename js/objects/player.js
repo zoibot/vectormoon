@@ -14,13 +14,13 @@
         // move player
         var vx = 0;
         var vy = 0;
-        if (keyboard.pressed(37))
+        if (keyboard.pressed(37)) // left
             vx -= 4;
-        if (keyboard.pressed(38))
+        if (keyboard.pressed(38)) // up
             vy -= 4;
-        if (keyboard.pressed(39))
+        if (keyboard.pressed(39)) // right
             vx += 4;
-        if (keyboard.pressed(40))
+        if (keyboard.pressed(40)) // down
             vy += 4;
         var newx = this.x + vx;
         var newy = this.y + vy;
@@ -40,16 +40,14 @@
                     }
                 }
             });
-            if (!bad_pos)
-            {
+            if (!bad_pos) {
                 newx = tryx;
                 newy = tryy;
                 break;
             }
         }
 
-        if (!bad_pos)
-        {
+        if (!bad_pos) {
             this.x = newx;
             this.y = newy;
             if (vx || vy)
@@ -58,14 +56,21 @@
         
         // interact with world
         var new_events = [new events.touch(this.x, this.y, this)];
-        if (keyboard.pressed(32))
+        if (keyboard.pressed(32)) // space
             new_events.push(new events.hit(this.x, this.y, this));
 
-        if (keyboard.pressed(73))
-        {
+        if (keyboard.pressed(73)) // i
             // open inventory menu
             game.push_state(inventory);
+
+        if (keyboard.pressed(90)) { // z
+            var equipped_item = inventory.get_equipped();
+            if (equipped_item && equipped_item.use) {
+                // TODO make use be an action list
+                new_events.push(new events.use(equipped_item.use[0], this.x, this.y, this));
+            }
         }
+
 
         return new_events;
     };
