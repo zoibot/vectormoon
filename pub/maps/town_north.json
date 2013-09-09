@@ -1,0 +1,8 @@
+{
+    "name": "maps/town_north",
+    "objects": {
+                "hut": ["background", [100,100], "hut", false, "gfx/hut.json"],
+                "door": ["fixed", [150,150], "door", false, "gfx/door.json"],
+                "down": ["edge_portal", "bottom", "maps/town_square"]
+               }
+}

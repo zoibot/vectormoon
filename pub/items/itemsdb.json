@@ -31,7 +31,7 @@
     "id": 4,
     "name": "Potato Plant",
     "sprite_name": "gfx/potatoseeds.json",
-    "description": "This is a potato plant"
+    "description": "This is a potato plant",
     "grabbable": false
 }
 ]

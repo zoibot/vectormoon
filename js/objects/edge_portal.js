@@ -11,7 +11,7 @@
         if (this.edge === "top" && y < 10) return true;
         else if (this.edge === "bottom" && y > 590) return true;
         if (this.edge === "left" && x < 10) return true;
-        else if (this.edge === "right" && y > 790) return true;
+        else if (this.edge === "right" && x > 640) return true;
         else return false;
     };
 
@@ -28,7 +28,7 @@
                     ev.source.y = 15;
                     break;
                 case "left":
-                    ev.source.x = 785;
+                    ev.source.x = 635;
                     break;
                 case "right":
                     ev.source.x = 15;

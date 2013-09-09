@@ -1,12 +1,12 @@
 
 tools
 - level editor
+- items editor
 
 graphics
 - render things to offscreen canvas to improve performance
 
 game engine
-- create inventory/item system
 - create a shop
 - component based objects
 
@@ -14,12 +14,18 @@ content
 - add a couple maps
 - exploration
  - how does this work as far as randomness and such?
+ - portals could have randomness in them- how to keep it consistent?
 
 items
 - some usable items- hoe + seeds?
+- planting in plots
+- camp/sleeping
+- better item scripting
 
 infrastructure
 - switch to require
+- move items to a db?
+- crunch data (maps and items)
 
 server
 - create "state" system, decide when to update server with state, etc

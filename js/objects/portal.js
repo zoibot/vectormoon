@@ -1,23 +1,17 @@
 (function () {
     var portal = window.objects.portal = function (pos, name, sprite_str, destination_map, destination_pos) {
         objects.fixed.call(this, pos, name, sprite_str);
-        this.destination_map 
+        this.destination_map = destination_map;
+        this.destination_pos = destination_pos;
     };
 
-    // TODO make utility function
-    function temp(){};
-    temp.prototype = objects.fixed.prototype;
-    portal.prototype = new temp();
-    portal.prototype.constructor = portal;
-
-    portal.prototype.hits = function (x, y) {
-        if (y < 10) return true;
-        else return false;
-    };
+    portal.prototype = $.extend({}, objects.fixed.prototye);
 
     portal.prototype.handle = function (ev) {
         if (ev.type === "touch") {
-            world.load_stage("maps/path");
+            world.load_stage(this.destination_map);
+            ev.source.x = this.destination_pos[0];
+            ev.source.y = this.destination_pos[1];
         }
     };
 })();
