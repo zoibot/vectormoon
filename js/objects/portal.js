@@ -5,7 +5,7 @@
         this.destination_pos = destination_pos;
     };
 
-    portal.prototype = $.extend({}, objects.fixed.prototye);
+    portal.prototype = $.extend({}, objects.fixed.prototype);
 
     portal.prototype.handle = function (ev) {
         if (ev.type === "touch") {

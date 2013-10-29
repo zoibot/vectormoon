@@ -51,6 +51,7 @@ world = (function () {
 
     w.init = function (game) {
         var state = game.save_state;
+        this.loading = $.when();
         item_db.populate().then(function ()
         {
             world_objects = $.map(state.world_objects, objects.construct_object);
@@ -62,17 +63,19 @@ world = (function () {
 
     w.load_stage = function (name) {
         // TODO need to save old stage here
+        var oldLoading = this.loading
         this.loading = $.Deferred()
-        if (name in stage_cache) {
-            w.end_load_stage(stage_cache[name]);
-            this.loading.resolve();
-        } else {
-            $.getJSON(name+".json",
-                function (data) {
-                    stage_cache[name] = data;
-                    w.end_load_stage(data);
-                });
-        }
+        oldLoading.then(function () {
+            if (name in stage_cache) {
+                w.end_load_stage(stage_cache[name]);
+            } else {
+                $.getJSON(name+".json",
+                    function (data) {
+                        stage_cache[name] = data;
+                        w.end_load_stage(data);
+                    });
+            }
+        });
         return this.loading.promise();
     };
     w.end_load_stage = function (data) {
