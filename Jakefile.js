@@ -1,9 +1,28 @@
 var fs = require('fs');
 var uglify = require('uglify-js');
 
+function minify(files, target, debug) {
+  var all = '';
+
+  files.forEach(function(file, i) {
+      all += fs.readFileSync(file).toString();
+  });
+
+  var out = fs.openSync(target, 'w+');
+
+  if(!debug) {
+    var ast = uglify.parser.parse(all);
+    ast = uglify.uglify.ast_mangle(ast);
+    ast = uglify.uglify.ast_squeeze(ast);
+    fs.writeSync(out, uglify.uglify.gen_code(ast));
+  } else {
+    fs.writeSync(out, all);
+  }
+
+}
+
 desc('Uglify JS');
 task('minify', [], function(debug) {
-  var all = '';
   var files = [ 'ext/js/jquery.js',
                 'js/util.js',
                 'js/graphics-canvas.js',
@@ -27,19 +46,14 @@ task('minify', [], function(debug) {
                 'js/menu.js',
                 'js/main.js' 
               ];
-  files.forEach(function(file, i) {
-      all += fs.readFileSync(file).toString();
-  });
+  minify(files, 'pub/all.js', debug);
 
-  var out = fs.openSync('pub/all.js', 'w+');
-  if(!debug) {
-    var ast = uglify.parser.parse(all);
-    ast = uglify.uglify.ast_mangle(ast);
-    ast = uglify.uglify.ast_squeeze(ast);
-    fs.writeSync(out, uglify.uglify.gen_code(ast));
-  } else {
-    fs.writeSync(out, all);
-  }
+  var tools = [ 'ext/js/jquery.js',
+                'js/util.js',
+                'js/graphics-canvas.js',
+                'js/tools/sprite_viewer.js' ]
+  minify(tools, 'pub/sprite_viewer.js', debug);
+
 });
 
 task('default', [], function(params) {
