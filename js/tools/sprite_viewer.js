@@ -4,9 +4,10 @@
     var state = "default";
     var x = 0;
     var y = 0;
-    var scale = 1.0;
 
-    var sprite = new graphics.sprite(sprite_name);
+    var sprite_filename = "../gfx/" + sprite_name + ".json";
+
+    var sprite = new graphics.sprite(sprite_filename);
     var requestAnimationFrame = window.requestAnimationFrame ||
                             window.mozRequestAnimationFrame ||
                             window.webkitRequestAnimationFrame ||
@@ -23,6 +24,16 @@
         });
         $("#yoff").change(function () {
             y = parseFloat($("#yoff").val());
+        });
+        $("#save").click(function () {
+            $.post("edit_sprite.py", {
+                file: sprite_name,
+                scale: sprite.scale,
+                xoff: x,
+                yoff: y
+            }).then(function (results) {
+                alert(results);
+            });
         });
 
         sprite.loaded.then(function () {
