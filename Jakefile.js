@@ -18,9 +18,8 @@ function minify(files, target, debug) {
   } else {
     fs.writeSync(out, all);
   }
-
 }
-
+// TODO split concat task and minify task
 desc('Uglify JS');
 task('minify', [], function(debug) {
   var files = [ 'ext/js/jquery.js',
@@ -62,4 +61,10 @@ task('default', [], function(params) {
 
 task('release', [], function(params) {
     jake.Task['minify'].invoke();
+});
+
+watchTask(['minify'], function () {
+  this.watchFiles.include([
+    './**/*.js'
+  ]);
 });
