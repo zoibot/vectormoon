@@ -101,7 +101,17 @@ graphics.polygon.prototype.contains = function (x, y, pos_x, pos_y, scale, deg) 
     }
 
     return crossing_number & 1;
-}
+};
+
+graphics.rectangle = function (wh, color) {
+    this.color = color || [255,255,255,255];
+    var h = wh[1];
+    var w = wh[0];
+    this.points = [[0,0], [0,h], [w,h], [w,0]];
+    this.len = 4;
+};
+
+graphics.rectangle.prototype = $.extend({}, graphics.polygon.prototype);
 
 graphics.sprite = function (anims, color, imgs) {
     this.anims = null;
@@ -127,6 +137,10 @@ graphics.sprite.prototype.draw = function (ctx, x, y, deg, state) {
 graphics.sprite.prototype.contains = function (x, y, x_pos, y_pos, deg, state) {
     var graphic = this.anims[state][this.frame];
     return graphic.contains && graphic.contains(x, y, x_pos, y_pos, this.scale, deg);
+};
+
+graphics.sprite.prototype.list_anims = function () {
+    return Object.keys(this.anims);
 };
 
 graphics.sprite.prototype.load_anims = function (filename) {

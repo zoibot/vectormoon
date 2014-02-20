@@ -1,7 +1,7 @@
 {
-"type": "Rectangle",
+"type": "graphics.rectangle",
 "animations": {
-"default": [[[0,0,0,1], 40, 40]],
-"selected": [[[1,0,0,1], 40, 40]]
+"default": [[[255,255,255,255], 40, 40]],
+"selected": [[[255,0,0,255], 40, 40]]
 }
 }
