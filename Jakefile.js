@@ -22,6 +22,8 @@ function minify(files, target, debug) {
 // TODO split concat task and minify task
 desc('Uglify JS');
 task('minify', [], function(debug) {
+  var common_object_files = []
+
   var files = [ 'ext/js/jquery.js',
                 'js/util.js',
                 'js/graphics-canvas.js',
@@ -47,11 +49,28 @@ task('minify', [], function(debug) {
               ];
   minify(files, 'pub/all.js', debug);
 
-  var tools = [ 'ext/js/jquery.js',
+  var sprite_viewer = [ 'ext/js/jquery.js',
                 'js/util.js',
                 'js/graphics-canvas.js',
                 'js/tools/sprite_viewer.js' ]
-  minify(tools, 'pub/sprite_viewer.js', debug);
+  minify(sprite_viewer, 'pub/sprite_viewer.js', debug);
+
+  // TODO base this off of the main game file
+  var map_viewer = [ 'ext/js/jquery.js',
+                'js/util.js',
+                'js/graphics-canvas.js',
+                'js/objects.js',
+                'js/objects/player.js',
+                'js/objects/fixed.js',
+                'js/objects/edge_portal.js',
+                'js/objects/hud.js',
+                'js/objects/item.js',
+                'js/objects/portal.js',
+                'js/objects/background.js',
+                'js/objects/textbox.js',
+                'js/item_db.js',
+                'js/tools/map_viewer.js' ]
+  minify(map_viewer, 'pub/map_viewer.js', debug);
 
 });
 
@@ -63,7 +82,7 @@ task('release', [], function(params) {
     jake.Task['minify'].invoke();
 });
 
-watchTask(['minify'], function () {
+watchTask(['default'], function () {
   this.watchFiles.include([
     './**/*.js'
   ]);

@@ -14,7 +14,7 @@ background.prototype.draw = function (ctx) {
 background.prototype.update = function () {
 };
 background.prototype.hits = function (ex, ey) {
-    return this.x === ex && this.y === ey;
+    return this.contains(ex, ey);
 };
 background.prototype.contains = function (x, y)
 {

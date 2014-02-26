@@ -13,7 +13,8 @@
         // TODO come up with a better API for direct drawing like this
         graphics.draw([{ draw: function (ctx) {
             ctx.save();
-            // TODO draw this all to canvas and then blit
+            // TODO draw this all to canvas and then blit (way faster)
+            ctx.font = "10pt Arial";
             ctx.beginPath();
             // draw right status
             ctx.rect(650, 0, 150, 600);
@@ -31,12 +32,15 @@
             ctx.closePath();
 
             _this.hp.draw(ctx, 670, 50, 0, 'default');
-            _this.energy.draw(ctx, 670, 50, 0, 'default');
+            _this.energy.draw(ctx, 670, 80, 0, 'default');
+
+            // everything below here is dynamic
+            ctx.strokeText("100", 700, 65);
+            ctx.strokeText("100", 700, 95);
 
             if (item1)
             {
                 item_db.get_sprite(item1.id).draw(ctx, 660, 150, 0, 'default');
-                ctx.font = "10pt Arial";
                 ctx.strokeText(item1.name, 660, 230);
             }
             ctx.restore();
