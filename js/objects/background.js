@@ -11,11 +11,14 @@ var background = window.objects.background = function (pos, name, solid, sprite_
 background.prototype.draw = function (ctx) {
     this.graphic.draw(ctx, this.x, this.y, 0, 'default');
 };
+
 background.prototype.update = function () {
 };
+
 background.prototype.hits = function (ex, ey) {
     return this.contains(ex, ey);
 };
+
 background.prototype.contains = function (x, y)
 {
     return this.graphic.contains(x, y, this.x, this.y, 0, 'default');

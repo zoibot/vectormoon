@@ -6,8 +6,8 @@
     "description": "This is a crappy old hammer",
     "grabbable": false,
     "consume": false,
-    "use": ["hammer"],
     "handlers": {
+        "use": ["event", "hammer"],
         "hoe" : "you hoed that biz"
     }
 },
@@ -18,14 +18,19 @@
     "description": "This is a crappy old hoe",
     "grabbable": true,
     "consume": false,
-    "use": ["hoe"]
+    "handlers": {
+        "use": ["event", "hoe"]
+    }
 },
 {
     "id": 3,
     "name": "Potato Seeds",
     "sprite_name": "gfx/potatoseeds.json",
     "description": "These are some crappy old potato seeds",
-    "grabbable": true
+    "grabbable": true,
+    "handlers": {
+        "use": ["event", "plant", {"plant": 4}]
+    }
 },
 {
     "id": 4,

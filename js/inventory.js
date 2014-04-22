@@ -16,7 +16,6 @@
             return equipped;
         },
         update: function () {
-            // TODO handle input
             // draw
             // TODO move this to graphics somehow
             graphics.draw([{ draw: function (ctx) {
@@ -26,18 +25,15 @@
                 // draw background squares
                 ctx.beginPath();
                 ctx.rect(50, 50, 700, 500);
-                for (var i = 0; i < 7; i++)
-                {
-                    for (var j = 0; j < 5; j++)
-                    {
+                for (var i = 0; i < 7; i++) {
+                    for (var j = 0; j < 5; j++) {
                         ctx.rect(i * 100 + 60, j * 100 + 60, 80, 80);
                     }
                 }
                 ctx.strokeStyle = writeColor([255,255,255,255]);
                 ctx.stroke();
 
-                for (var k = 0; k < inventory_contents.length; k++)
-                {
+                for (var k = 0; k < inventory_contents.length; k++) {
                     var x = k % 7;
                     var y = Math.floor(k / 7);
                     item_db.get_sprite(inventory_contents[k].id).draw(ctx, x * 100 + 60, y * 100 + 60, 0, 'default');

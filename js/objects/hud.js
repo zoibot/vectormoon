@@ -1,7 +1,7 @@
 (function () {
     var hud = window.objects.hud = function () {
-        this.hp = new graphics.sprite("gfx/hp.json");
-        this.energy = new graphics.sprite("gfx/e.json");
+        this.hp = new graphics.sprite("gfx/hp.json", [255, 100, 100, 255]);
+        this.energy = new graphics.sprite("gfx/e.json", [100, 100, 255, 255]);
         this.loaded = jQuery.when(this.hp.loaded, this.energy.loaded);
     };
 
@@ -35,7 +35,12 @@
             _this.energy.draw(ctx, 670, 80, 0, 'default');
 
             // everything below here is dynamic
+            // player name
+            ctx.strokeText("Name", 700, 15);
+
+            // hp
             ctx.strokeText("100", 700, 65);
+            // energy
             ctx.strokeText("100", 700, 95);
 
             if (item1)
