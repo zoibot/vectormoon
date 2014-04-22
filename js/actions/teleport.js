@@ -9,6 +9,7 @@
         this.done = false;
         world.load_stage(this.object);
         world.loading.then(function () {
+            obj.location = this.destination_map;
             obj.x = pos[0];
             obj.y = pos[1];
         });

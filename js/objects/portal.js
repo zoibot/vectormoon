@@ -9,9 +9,11 @@
 
     portal.prototype.handle = function (ev) {
         if (ev.type === "touch") {
-            world.load_stage(this.destination_map);
-            ev.source.x = this.destination_pos[0];
-            ev.source.y = this.destination_pos[1];
+            ev.source.location = this.destination_map;
+            world.load_stage(this.destination_map).then(function () {
+                ev.source.x = this.destination_pos[0];
+                ev.source.y = this.destination_pos[1];
+            });
         }
     };
 })();
