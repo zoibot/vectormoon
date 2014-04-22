@@ -12,7 +12,8 @@
 
         var _this = this;
 
-        $(document).keyup(function (e) { _keypress(_this, e); });
+        this.keypress = function (e) { _keypress(_this, e); };
+        $(document).keypress(this.keypress);
     };
 
     function _keypress(_this, e) {
@@ -113,6 +114,7 @@
     };
 
     textbox.prototype.dismiss = function () {
+        $(document).unbind("keypress", this.keypress);
         this.dismissed = true;
     }
 
