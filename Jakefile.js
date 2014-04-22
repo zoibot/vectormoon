@@ -37,6 +37,7 @@ task('minify', [], function(debug) {
                 'js/objects/portal.js',
                 'js/objects/background.js',
                 'js/objects/textbox.js',
+                'js/objects/plot.js',
                 'js/input.js',
                 'js/item_db.js',
                 'js/events.js',
@@ -68,6 +69,7 @@ task('minify', [], function(debug) {
                 'js/objects/portal.js',
                 'js/objects/background.js',
                 'js/objects/textbox.js',
+                'js/objects/plot.js',
                 'js/item_db.js',
                 'js/tools/map_viewer.js' ]
   minify(map_viewer, 'pub/map_viewer.js', debug);

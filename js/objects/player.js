@@ -6,6 +6,7 @@
         this.x = this.y = 10;
         this.angle = 0;
         this.name = "player";
+        this.just_used = false;
     };
     player.prototype.draw = function (ctx) {
         this.graphic.draw(ctx, this.x, this.y, this.angle, 'stand');
@@ -64,13 +65,20 @@
             game.push_state(inventory);
 
         if (keyboard.pressed(90)) { // z
-            var equipped_item = inventory.get_equipped();
-            if (equipped_item && equipped_item.use) {
-                // TODO make use be an action list
-                new_events.push(new events.use(equipped_item.use[0], this.x, this.y, this));
+            if (!this.just_used)
+            {
+                var equipped_item = inventory.get_equipped();
+                if (equipped_item && equipped_item.handlers && equipped_item.handlers.use) {
+                    // TODO make use be an action list (so you can do multiple things)
+                    new_events.push(new events.use(equipped_item.handlers.use[0], equipped_item.handlers.use[1], this.x, this.y, this));
+                }
+                this.just_used = true;
             }
         }
-
+        else
+        {
+            this.just_used = false;
+        }
 
         return new_events;
     };

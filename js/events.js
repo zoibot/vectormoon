@@ -14,8 +14,9 @@
             this.source = source;
             return this;
         },
-        use: function (item, x, y, source) {
-            this.type = item;
+        use: function (type, properties, x, y, source) {
+            this.type = type;
+            this.props = properties;
             this.x = x;
             this.y = y;
             this.source = source;
