@@ -8,3 +8,7 @@ and so on
 then I'd have actions = {}
 actions.triggerEvent = blah
 could combine with action queue and just support synchronous actions
+
+All items (inventory and world, probably not player itself) should be defined in items DB
+Goal is that work is mostly done in inkscape + sprite editor + world editor + item editor
+
