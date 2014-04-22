@@ -9,11 +9,11 @@ form = cgi.FieldStorage()
 scale = float(form.getfirst('scale', '1'))
 xoff = int(form.getfirst('xoff', '0'))
 yoff = int(form.getfirst('yoff', '0'))
-file = form.getfirst('file')
-if not re.match('[A-Za-z_]*\.json', file):
+fle = form.getfirst('file')
+if not re.match('[A-Za-z_]*\.json', fle):
     print 'failure invalid filename'
     sys.exit(1)
-file = '../gfx/' + file 
+file = '../gfx/' + fle 
 
 print 'Content-Type: text/html\n\n'
 
@@ -26,9 +26,8 @@ animation = 'default'
 with open(file) as f:
     polygon = json.load(f)
 
-# calculate scale
+# remove old scale
 if 'scale' in polygon:
-    scale *= float(polygon['scale'])
     del polygon['scale']
 
 frames = polygon['animations'][animation]

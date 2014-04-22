@@ -63,7 +63,7 @@
         });
         $("#save").click(function () {
             $.post("edit_sprite.py", {
-                file: sprite_name,
+                file: sprite_name + ".json",
                 scale: sprite.scale,
                 xoff: x,
                 yoff: y

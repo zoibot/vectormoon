@@ -63,6 +63,8 @@
         graphics.init();
         item_db.populate()
 
+        var selected_item = null;
+
         var select = $("#level_selector");
         $.get("tools/list_maps.py").then(function (maps) {
             for (var i = 0; i < maps.length; i++) {
@@ -76,8 +78,14 @@
         });
 
         $("canvas").click(function (event) {
+            var x = event.clientX - $("canvas").offset().left;
+            var y = event.clientY - $("canvas").offset().top;
             for (var i = 0; i < local_objects.length; i++) {
-
+                if (local_objects[i].hits(x,y)) {
+                    console.log("clicked on something", local_objects[i]);
+                    selected_item = local_objects[i];
+                    // get bounding box
+                }
             }
         })
 
