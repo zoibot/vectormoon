@@ -1,4 +1,5 @@
 (function () {
+    // TODO make these more generic
     events = {
         touch: function (x, y, source) {
             this.type = "touch";

@@ -67,10 +67,10 @@
         if (keyboard.pressed(90)) { // z
             if (!this.just_used)
             {
+                // TODO Problem- some events need to have current X, Y
                 var equipped_item = inventory.get_equipped();
                 if (equipped_item && equipped_item.handlers && equipped_item.handlers.use) {
-                    // TODO make use be an action list (so you can do multiple things)
-                    new_events.push(new events.use(equipped_item.handlers.use[0], equipped_item.handlers.use[1], this.x, this.y, this));
+                    action_queue.enqueue_encoded(equipped_item.handlers.use, this);
                 }
                 this.just_used = true;
             }

@@ -99,6 +99,8 @@ world = (function () {
             }
         });
 
+        watch("current stage", data.name);
+
         function watch_promises()
         {
             var string = "";
@@ -141,8 +143,11 @@ world = (function () {
         }
         document.title="vectormoon";
     	graphics.draw(local_objects);
-        action_queue.update();
         var ev;
+        ev = action_queue.update();
+        if (ev) {
+            event_queue.push.apply(event_queue, ev);
+        }
         for (var i = 0; i < local_objects.length; i++) {
             ev = local_objects[i].update(local_objects);
             if (ev) {

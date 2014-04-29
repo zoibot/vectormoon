@@ -42,6 +42,7 @@ task('minify', [], function(debug) {
                 'js/item_db.js',
                 'js/events.js',
                 'js/action_queue.js',
+                'js/actions/event.js',
                 'js/actions/textbox.js',
                 'js/actions/teleport.js',
                 'js/inventory.js',

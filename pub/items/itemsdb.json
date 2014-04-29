@@ -7,7 +7,7 @@
     "grabbable": false,
     "consume": false,
     "handlers": {
-        "use": ["event", "hammer"],
+        "use": [["event", "use", "hammer"]],
         "hoe" : "you hoed that biz"
     }
 },
@@ -19,7 +19,7 @@
     "grabbable": true,
     "consume": false,
     "handlers": {
-        "use": ["event", "hoe"]
+        "use": [["event", "use", "hoe"]]
     }
 },
 {
@@ -29,7 +29,7 @@
     "description": "These are some crappy old potato seeds",
     "grabbable": true,
     "handlers": {
-        "use": ["event", "plant", {"plant": 4}]
+        "use": [["event", "use", "plant", {"plant": 4}]]
     }
 },
 {
