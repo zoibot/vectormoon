@@ -10,7 +10,7 @@ scale = float(form.getfirst('scale', '1'))
 xoff = int(form.getfirst('xoff', '0'))
 yoff = int(form.getfirst('yoff', '0'))
 fle = form.getfirst('file')
-if not re.match('[A-Za-z_]*\.json', fle):
+if not re.match('[A-Za-z0-9_]*\.json', fle):
     print 'failure invalid filename'
     sys.exit(1)
 file = '../gfx/' + fle 
