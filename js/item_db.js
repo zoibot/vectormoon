@@ -11,6 +11,9 @@ item_db = (function () {
             {
                 db[items[i].id] = items[i];
             }
+        }).fail(function (x, errortype, error) {
+            console.log(errortype);
+            console.log(error);
         });
     };
     i.lookup_item = function (item_id) {
