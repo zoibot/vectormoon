@@ -1,9 +1,11 @@
 Overview
+========
 * Inspired by KOL/Harvestmoon/?
-* Takes place on a space station or crashed space ship
+* Takes place on a planet near crashed space ship
 * Set length quest that you repeat for speed, gaining skills in a meta game
 
 General Notes
+-------------
 * Go to a place to get some macguffins, can only carry back some at a time
 * Each one you can use to teleport back and gain another skill
 * Or build up town with macguffins, then you can use them as currency for items/skills
@@ -11,22 +13,58 @@ General Notes
 * Survival is important- making sure you have enough food, shelter, etc
 * Robot companion to send back items?
 * Start in populated town with a plot of land for stuff, slowly
+* night and day are important
 
 Plot
+----
 * Space station is huge but failing due to something, need to recover these energy pods or whatever
 * Supplies need to be reset every time you get something for the speedrun aspect to work
 
 Farm
+----
 * Start on farm, initial part of the game is growing stuff to get supplies for the trip
+* Vegetables give you
+  * food for yourself
+  * food for animals
+  * fuel source? (ethanol?)
+  * wood
+* animals give you
+  * companion? (or just robots?)
+  * food (milk, meat)
+  * clothing (wool, leather)
 
 Robots
+------
 * Get a companion with various trade offs like carrying capacity vs speed going back to town vs utility in other things
 
 Shelter
+-------
 * Different types of shelter to carry- weight trade offs
 * Different places might have different types of bonuses, interact with type of shelter
 
-(so far this has been an interesting framework to set up something like KOL where you have different ways to optimize different stats and items)
+Obstacles
+---------
+* various ways to pass
+* no combat
+* (so far this has been an interesting framework to set up something like KOL where you have different ways to optimize different stats and items)
+
+--------------
+
+Plot
+====
+Start on a space station- some silly name
+technic
+slinky
+What is the space station? What is it doing?
+- colonization (makes sense)
+- exploration (similar)
+- permanent settlement?
+
+
+--------------
+--------------
+
+
 Obstacles- "Nature"
 * cliff
   * possible solutions: ladder (uses wood, weight), jetpack (uses fuel, weight)
@@ -41,4 +79,5 @@ Obstacles- "Nature"
   * explosives, lockpick, "knowledge", brute force
   * relevant stats: intelligence, strength etc
 
-Obstacles
+Obstacles- "Events"
+

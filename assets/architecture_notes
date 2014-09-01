@@ -12,3 +12,8 @@ could combine with action queue and just support synchronous actions
 All items (inventory and world, probably not player itself) should be defined in items DB
 Goal is that work is mostly done in inkscape + sprite editor + world editor + item editor
 
+Need to think about items vs objects -> definitely lean toward items
+think about objects -> which ones should really be items?
+ui etc need to be objects, but maybe "fixed", "npc", and "plot" could be items
+
+
