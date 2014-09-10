@@ -1,0 +1,13 @@
+{
+    "name": "maps/farm",
+    "objects": {
+                "field": ["background", [100,100], "field", false, "gfx/field.json"],
+                "plot": ["plot", [120,120]],
+                "potatoseeds": ["item", [100,50], 3],
+                "pond": ["background", [300,300], "pond", true, "gfx/pond.json"],
+                "hammer": ["item", [100,450], 1],
+                "hoe": ["item", [120,50], 2],
+                "potatoseeds": ["item", [100,50], 3],
+                "top": ["edge_portal", "top", "maps/path"]
+               }
+}

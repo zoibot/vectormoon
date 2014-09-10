@@ -1,0 +1,7 @@
+{
+"type": "graphics.polygon",
+"scale": 2,
+"animations": {
+"stand": [[[0,255,0,255],[0,0],[-5,-5],[5,0],[-5,5]]]
+}
+}

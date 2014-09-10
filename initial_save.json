@@ -1,0 +1,11 @@
+{
+    "stage":"maps/farm",
+    "world_objects": [
+            ["player"],
+            ["hud"]
+        ],
+    "flags": {},
+    "daily_flags": {
+        "item_pickups": {}
+    }
+}

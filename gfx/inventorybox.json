@@ -1,0 +1,6 @@
+{
+"type": "graphics.rectangle",
+"animations": {
+"default": [[[255,255,255,255], 250, 250]]
+}
+}

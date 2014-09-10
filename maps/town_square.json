@@ -1,0 +1,8 @@
+{
+    "name": "maps/town_square",
+    "objects": {
+                "pond": ["background", [100,100], "path", true, "gfx/pond.json"],
+                "left": ["edge_portal", "left", "maps/path2"],
+                "top": ["edge_portal", "top", "maps/town_north"]
+               }
+}

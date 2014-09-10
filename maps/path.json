@@ -1,0 +1,9 @@
+{
+    "name": "maps/path",
+    "objects": {
+                "path": ["background", [-900,0], "path", false, "gfx/path.json"],
+                "left": ["edge_portal", "left", "maps/river"],
+                "right": ["edge_portal", "right", "maps/path2"],
+                "down": ["edge_portal", "bottom", "maps/farm"]
+               }
+}
