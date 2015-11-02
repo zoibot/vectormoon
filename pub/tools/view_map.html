@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang=en>
 <head>
-<base href="/vectormoon/">
+<base href="../">
 <script type="text/javascript" src="map_viewer.js"></script>
 <style type="text/css">
 body {
@@ -11,6 +11,7 @@ body {
 canvas {
     border: 2px solid red;
     position: absolute;
+    left: 400px;
 }
 </style>
 </head>
@@ -18,5 +19,7 @@ canvas {
 <div id="cv_wrap"></div>
 <label>Choose level: <select id="level_selector"></select></label>
 <button id="save">Save</button>
+<br>
+<select id="objects" size="5"></select>
 </body>
 </html>

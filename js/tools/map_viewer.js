@@ -14,6 +14,7 @@
     var stage = null;
     var stage_cache = {};
     var local_objects = [];
+    var local_object_map = {};
 
     function load_stage(name) {
         var oldLoading =loading;
@@ -37,14 +38,20 @@
         var promise_names = [];
         
         // load objects local to this map
-        local_objects = $.map(data.objects, objects.construct_object);
-        local_objects.forEach(function (obj) {
+        local_objects = $.map(data.objects, function (desc, name) {
+            var obj = objects.construct_object(desc)
+            obj.name = name || JSON.stringify(obj);
             load_promises.push(obj.loaded);
-            promise_names.push(obj.name || JSON.stringify(obj));
+            promise_names.push(obj.name);
+            local_object_map[name] = obj;
+            return obj;
         });
 
         $.when.apply($, load_promises).then(function () {
             stage = data;
+            local_objects.forEach(function (obj) {
+                $("#objects").append($("<option>").text(obj.name));
+            });
             loading.resolve();
             loop();
         });
@@ -87,7 +94,14 @@
                     // get bounding box
                 }
             }
-        })
+        });
+
+        var objs = $("#objects");
+        objs.click(function (event) {
+            var v = objs.val();
+            alert(v);
+        });
+
 
         // $("#save").click(function () {
         //     $.post("edit_sprite.py", {
