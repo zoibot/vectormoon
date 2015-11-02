@@ -5,7 +5,7 @@ import sys
 import json
 import os
 
-maps = os.listdir('../maps/')
+maps = os.listdir('maps/')
 filtered_maps = [map[:-5] for map in maps if map[-5:] == '.json']
 
 print 'Content-type: text/json\n'
