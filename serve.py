@@ -4,6 +4,8 @@ import os
 import os.path
 import sys
 
+import urllib
+
 import subprocess
 import select
 try:
@@ -12,7 +14,19 @@ try:
 except:
     # python 2
     from BaseHTTPServer import HTTPServer
-    from SimpleHTTPServer import SimpleHTTPRequestHandler
+    from CGIHTTPServer import CGIHTTPRequestHandler
+    #from SimpleHTTPServer import SimpleHTTPRequestHandler
+
+class Dumb(CGIHTTPRequestHandler, object):
+    def is_cgi(self):
+        prefix = '/tools'
+        print self.path
+        print self.path[:len(prefix)]
+        print self.path[-3:]
+        if self.path[:len(prefix)] == prefix and self.path[-3:] == '.py':
+            self.cgi_info = ('', self.path)
+            return True
+        return False
 
 #assuming we're in project root
 os.chdir('pub')
@@ -23,7 +37,8 @@ def make():
     print(subprocess.call('jake', cwd='..', shell=is_win))
     has_changed() # we know it just changed, so ignore this one
 
-httpd = HTTPServer(('', 8000), SimpleHTTPRequestHandler)
+Dumb.cgi_directories = ["/tools/cgi"]
+httpd = HTTPServer(('', 8000), Dumb)
 print('serving at port 8000')
 
 last_changed = 0
