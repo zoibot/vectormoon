@@ -15,6 +15,8 @@
     var stage_cache = {};
     var local_objects = [];
     var local_object_map = {};
+    var selected_item = null;
+    var box = null;
 
     function load_stage(name) {
         var oldLoading =loading;
@@ -31,7 +33,8 @@
             }
         });
         return loading.promise();
-    };
+    }
+
     function end_load_stage(data) {
         var load_promises = [];
 
@@ -55,22 +58,46 @@
             loading.resolve();
             loop();
         });
-    };
+    }
 
-    function update(timing) {
+    function select_item(obj) {
+        selected_item = obj;
+        var bounds = obj.box();
+        if (bounds) {
+            // TODO color
+            box = new graphics.rectangle([bounds[1] - bounds[3], bounds[2] - bounds[0]]);
+            box.x = bounds[3];
+            box.y = bounds[0];
+        } else {
+            box = null;
+        }
+    }
+
+    function update() {
         if (loading && !loading.isResolved())
         {
             return;
         }
         document.title="vectormoon";
+        if (box) {
+            graphics.draw([{
+                draw: function(ctx) {
+                    // TODO stroke
+                    // TODO don't use rect just ctx.rect
+                    // TODO this is bad
+                    ctx.save();
+                    ctx.translate(box.x, box.y);
+                    box.draw(ctx)
+                    ctx.restore();
+                }
+            }]);
+        }
         graphics.draw(local_objects);
-    };
+    }
 
     $(function () {
         graphics.init();
         item_db.populate()
-
-        var selected_item = null;
 
         var select = $("#level_selector");
         $.get("tools/list_maps.py").then(function (maps) {
@@ -90,7 +117,7 @@
             for (var i = 0; i < local_objects.length; i++) {
                 if (local_objects[i].hits(x,y)) {
                     console.log("clicked on something", local_objects[i]);
-                    selected_item = local_objects[i];
+                    select_item(local_objects[i]);
                     // get bounding box
                 }
             }
@@ -99,20 +126,21 @@
         var objs = $("#objects");
         objs.click(function (event) {
             var v = objs.val();
-            alert(v);
+            select_item(local_object_map[v]);
+            loop();
         });
 
 
-        // $("#save").click(function () {
-        //     $.post("edit_sprite.py", {
-        //         file: sprite_name,
-        //         scale: sprite.scale,
-        //         xoff: x,
-        //         yoff: y
-        //     }).then(function (results) {
-        //         alert(results);
-        //     });
-        // });
+        $("#save").click(function () {
+            $.post("edit_map.py", {
+                file: sprite_name,
+                scale: sprite.scale,
+                xoff: x,
+                yoff: y
+            }).then(function (results) {
+                alert(results);
+            });
+        });
 
     });
 

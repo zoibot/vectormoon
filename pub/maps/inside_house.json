@@ -1,7 +1,7 @@
 {
     "name": "maps/town_north/inside_house",
     "objects": {
-                "path": ["background", [-100,0], "path", false, "gfx/pond.json"],
+                "path": ["background", [-100,0], "pond", false, "gfx/pond.json"],
                 "down": ["edge_portal", "bottom", "maps/town_north"]
                }
 }

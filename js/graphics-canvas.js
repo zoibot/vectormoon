@@ -29,11 +29,15 @@ graphics.polygon = function (points, color) {
     this.points = points;
     var xs = $.map(points, function (p) { return p[0]; });
     var ys = $.map(points, function (p) { return p[1]; });
-    /*this.left = Math.min.apply(Math, xs);
+    this.left = Math.min.apply(Math, xs);
     this.right = Math.max.apply(Math, xs);
     this.top = Math.min.apply(Math, ys);
-    this.bot = Math.max.apply(Math, ys);*/
+    this.bot = Math.max.apply(Math, ys);
     this.len = points.length;
+};
+
+graphics.polygon.prototype.box = function () {
+    return [this.top, this.right, this.bot, this.left];
 };
 
 function writeColor(color) {
@@ -120,6 +124,12 @@ graphics.sprite = function (anims, color, imgs) {
     this.color = color || [255,255,255,255];
     this.imgs = imgs || [];
     this.frame = 0;
+};
+
+graphics.sprite.prototype.box = function (state) {
+    var graphic = this.anims[state][this.frame];
+    // TODO scale
+    return graphic.box && graphic.box();
 };
 
 graphics.sprite.prototype.draw = function (ctx, x, y, deg, state) {

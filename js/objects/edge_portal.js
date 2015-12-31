@@ -36,4 +36,17 @@
             }
         }
     };
+
+    edge_portal.prototype.box = function () {
+        switch(this.edge) {
+            case "top":
+                return [15,650,600,0]; 
+            case "bottom":
+                return [585,640,600,0]; 
+            case "left":
+                return [0,15,600,0]; 
+            case "right":
+                return [0,650,600,635]; 
+        }
+    };
 })();

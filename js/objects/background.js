@@ -19,10 +19,13 @@ background.prototype.hits = function (ex, ey) {
     return this.contains(ex, ey);
 };
 
-background.prototype.contains = function (x, y)
-{
+background.prototype.contains = function (x, y) {
     return this.graphic.contains(x, y, this.x, this.y, 0, 'default');
 };
+
+background.prototype.box = function () {
+    return this.graphic.box('default');
+}
 
 })();
 
