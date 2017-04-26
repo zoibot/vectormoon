@@ -62,7 +62,7 @@
 
     function select_item(obj) {
         selected_item = obj;
-        var bounds = obj.box();
+        var bounds = obj.box && obj.box();
         if (bounds) {
             // TODO color
             box = new graphics.rectangle([bounds[1] - bounds[3], bounds[2] - bounds[0]]);

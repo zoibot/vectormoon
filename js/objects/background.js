@@ -24,7 +24,7 @@ background.prototype.contains = function (x, y) {
 };
 
 background.prototype.box = function () {
-    return this.graphic.box('default');
+    return this.graphic.box(this.x, this.y, 0, 'default');
 }
 
 })();

@@ -27,17 +27,30 @@ graphics = function() {
 graphics.polygon = function (points, color) {
     this.color = color || [255,255,255,255];
     this.points = points;
-    var xs = $.map(points, function (p) { return p[0]; });
-    var ys = $.map(points, function (p) { return p[1]; });
-    this.left = Math.min.apply(Math, xs);
-    this.right = Math.max.apply(Math, xs);
-    this.top = Math.min.apply(Math, ys);
-    this.bot = Math.max.apply(Math, ys);
     this.len = points.length;
 };
 
-graphics.polygon.prototype.box = function () {
-    return [this.top, this.right, this.bot, this.left];
+graphics.polygon.prototype.box = function (pos_x, pos_y, scale, deg) {
+    var rotated_points = [];
+    var cos = Math.cos(Math.PI * (deg/180));
+    var sin = Math.sin(Math.PI * (deg/180));
+    // foreach point, rotate it, then push the edge on to a list
+    var points = this.points;
+    for (var i = 0, length = points.length; i < length; i++) {
+        rotated_points.push([
+                                pos_x + scale * (points[i][0] * cos - points[i][1] * sin),
+                                pos_y + scale * (points[i][0] * sin + points[i][1] * cos)
+                            ]);
+    }
+
+    var xs = $.map(rotated_points, function (p) { return p[0] * scale; });
+    var ys = $.map(rotated_points, function (p) { return p[1] * scale; });
+    var left = Math.min.apply(Math, xs);
+    var right = Math.max.apply(Math, xs);
+    var top = Math.min.apply(Math, ys);
+    var bot = Math.max.apply(Math, ys);
+
+    return [top, right, bot, left];
 };
 
 function writeColor(color) {
@@ -126,10 +139,10 @@ graphics.sprite = function (anims, color, imgs) {
     this.frame = 0;
 };
 
-graphics.sprite.prototype.box = function (state) {
+graphics.sprite.prototype.box = function (x, y, deg, state) {
     var graphic = this.anims[state][this.frame];
     // TODO scale
-    return graphic.box && graphic.box();
+    return graphic.box && graphic.box(x, y, this.scale, deg);
 };
 
 graphics.sprite.prototype.draw = function (ctx, x, y, deg, state) {
