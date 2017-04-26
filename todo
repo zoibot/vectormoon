@@ -1,8 +1,9 @@
 Concrete TODOs
-- convert JS items to JSON items + JS actions
 - make level editor load levels
+- convert JS items to JSON items + JS actions
 
 BUGS
+- boxes don't line up- something is wrong with transforming points
 - moving between maps is off
 - door is messed up
 

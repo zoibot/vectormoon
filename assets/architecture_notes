@@ -16,4 +16,8 @@ Need to think about items vs objects -> definitely lean toward items
 think about objects -> which ones should really be items?
 ui etc need to be objects, but maybe "fixed", "npc", and "plot" could be items
 
+=====
+
+Having objects have state like position and rotation that is separate and passed in to the graphics is getting to be a pain, since it makes it harder to do things like "contains" and get a bounding box. I could have some sort of shared property bag but that doesn't seem too great either. I need to really think about what the different objects are here and how to divide up responsibilities and state.
+
 
